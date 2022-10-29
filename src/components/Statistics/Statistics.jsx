@@ -1,22 +1,35 @@
-export const Statistics = ({ feedback, onClick }) => {
+import { PropTypes } from 'prop-types';
+import { StatisticsInfo } from './Statistics.styled';
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  totalFeedback,
+  positiveFb,
+}) => {
   return (
-    <div>
-      <h1>Please leave feedback</h1>
-      <div>
-        <button onClick={onClick} type="button">
-          Good
-        </button>
-        <button onClick={onClick} type="button">
-          Neutral
-        </button>
-        <button onClick={onClick} type="button">
-          Bad
-        </button>
-      </div>
-      <h2>Statistics</h2>
-      <p>Good: {feedback.good}</p>
-      <p>Neutral: {feedback.neutral}</p>
-      <p>Bad: {feedback.bad}</p>
-    </div>
+    <>
+      <p>
+        Good: <StatisticsInfo>{good}</StatisticsInfo>
+      </p>
+      <p>
+        Neutral: <StatisticsInfo>{neutral}</StatisticsInfo>
+      </p>
+      <p>
+        Bad: <StatisticsInfo>{bad}</StatisticsInfo>
+      </p>
+      <p>
+        Total: <StatisticsInfo>{totalFeedback()}</StatisticsInfo>
+      </p>
+      <p>
+        Positive feeedback: <StatisticsInfo>{positiveFb()}%</StatisticsInfo>
+      </p>
+    </>
   );
+};
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
 };

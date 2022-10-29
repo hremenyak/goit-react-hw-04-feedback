@@ -1,5 +1,10 @@
 import { Statistics } from './Statistics/Statistics';
 import React, { Component } from 'react';
+import { Section } from './Section/Section';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Notification } from './Notification/Notification';
+import { Wrapper } from './utils/Wrapper.styled';
+
 export class App extends Component {
   state = {
     good: 0,
@@ -8,16 +13,51 @@ export class App extends Component {
   };
 
   handleClick = e => {
-    console.log(e.target);
+    const rating = e.target.name;
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
-        neutral: prevState.neutral + 1,
-        bad: prevState.bad + 1,
+        ...prevState,
+        [rating]: prevState[rating] + 1,
       };
     });
   };
+
+  countTotalFeedback = () => {
+    return Object.values(this.state).reduce((value, acc) => {
+      return value + acc;
+    }, 0);
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const total = this.countTotalFeedback();
+    const positiveFB = (this.state.good * 100) / total;
+    return Math.round(positiveFB);
+  };
   render() {
-    return <Statistics feedback={this.state} onClick={this.handleClick} />;
+    return (
+      <Wrapper>
+        <Section title={'Please leave feedback'}>
+          <FeedbackOptions
+            options={this.state}
+            onLeaveFeedback={this.handleClick}
+          />
+        </Section>
+        <Section title={'Statistics'}>
+          {this.state.good > 0 ||
+          this.state.bad > 0 ||
+          this.state.neutral > 0 ? (
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              totalFeedback={this.countTotalFeedback}
+              positiveFb={this.countPositiveFeedbackPercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback yet." />
+          )}
+        </Section>
+      </Wrapper>
+    );
   }
 }
