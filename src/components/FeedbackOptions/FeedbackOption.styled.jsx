@@ -4,10 +4,13 @@ export const FeedbackOption = styled.button`
   border: none;
   outline: none;
   border-radius: 5px;
-  margin-left: 4px;
+
   cursor: pointer;
   text-align: center;
 
+  &:not(:last-child) {
+    margin-right: 7px;
+  }
   &:hover {
     background-color: skyblue;
   }
