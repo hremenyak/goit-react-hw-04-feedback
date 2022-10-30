@@ -19,10 +19,11 @@ export const Statistics = ({
         Bad: <StatisticsInfo>{bad}</StatisticsInfo>
       </p>
       <p>
-        Total: <StatisticsInfo>{totalFeedback()}</StatisticsInfo>
+        Total: <StatisticsInfo>{totalFeedback}</StatisticsInfo>
       </p>
       <p>
-        Positive feeedback: <StatisticsInfo>{positiveFb()}%</StatisticsInfo>
+        Positive feeedback:
+        <StatisticsInfo> {positiveFb}%</StatisticsInfo>
       </p>
     </>
   );
