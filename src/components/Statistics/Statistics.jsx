@@ -1,12 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { StatisticsInfo } from './Statistics.styled';
-export const Statistics = ({
-  good,
-  neutral,
-  bad,
-  totalFeedback,
-  positiveFb,
-}) => {
+const Statistics = ({ good, neutral, bad, totalFeedback, positiveFb }) => {
   return (
     <>
       <p>
@@ -34,3 +28,5 @@ Statistics.propTypes = {
   neutral: PropTypes.number.isRequired,
   bad: PropTypes.number.isRequired,
 };
+
+export default Statistics;

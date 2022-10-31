@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { FeedbackOption } from './FeedbackOption.styled';
-
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
       {Object.keys(options).map(option => (
@@ -22,3 +21,5 @@ FeedbackOptions.propTypes = {
   options: PropTypes.shape(),
   onLeaveFeedback: PropTypes.func.isRequired,
 };
+
+export default FeedbackOptions;
